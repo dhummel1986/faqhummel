@@ -18,6 +18,21 @@
                             Edit Answer
                         </a>
                     </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Report Answer</div>
+
+                                <div class="card-body">
+
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-primary float-right"
+                                       href="#">
+                                        Report
+                                    </a>
+
+                                </div>
                 </div>
 
             </div>

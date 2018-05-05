@@ -44,6 +44,7 @@
                             </div>
 
                         </div>
+                    </div>
                         <div class="card-footer">
                             <div class="float-right">
                                 {{ $questions->links() }}
@@ -54,4 +55,8 @@
                 </div>
             </div>
         </div>
+    <script>
+        var token= '{{Session::token()}}';
+        var urlLike = '{{route('like')}}';
+    </script>
         @endsection
