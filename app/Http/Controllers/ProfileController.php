@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Profile;
 use App\User;
+use App\Like;
 
 class ProfileController extends Controller
 {

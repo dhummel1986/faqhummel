@@ -37,7 +37,7 @@ Route::resources([
     'questions' => 'QuestionController',
 ]);
 Route::post('/like',[
-    'uses'=> 'QuestionController@questionLikeQuestion',
+    'uses'=> 'LikeController@likeController',
     'as' => 'like'
 ]);
 

@@ -25,8 +25,8 @@
 
 
                         <div class="interaction">
-                            <a href="#">Like</a>
-                            <a href="#">Dislike</a>
+                            <a href="#" class="like">Like</a>
+                            <a href="#" class="like ">Dislike</a>
                             <a href="{{ route('questions.show', ['id' => $question->id]) }}</a>
                         </div>
 

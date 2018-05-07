@@ -2,12 +2,12 @@
 
 $('.like').on('click', function(event){
     event.preventDefault();
-    questionId= event.target.parentNode.parentNode.dataset['questionid'];
+    question_id= event.target.parentNode.parentNode.dataset['question_id'];
     var isLike = event.target.previousElementSibling =null;
     $.ajax({
-        method: 'POST,
+        method: 'POST',
         url: urlLike,
-        data: {isLike: isLike, questionid: questionId, _token: token }
+        data: {isLike: isLike, question_id: question_id, _token: token }
     )}
     .done(function() {
  event.target.innerText = isLike ? event.target.innerText== 'Like' ? 'You liked this Post!' : 'Like': event.target.innerText == 'Dislike' ? 'You did not like this post' : 'Dislike'

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
-use App\Like;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
@@ -14,6 +12,7 @@ class QuestionController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +32,7 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      *
      */
@@ -41,8 +40,9 @@ class QuestionController extends Controller
     {
         $question = new Question;
         $edit = FALSE;
-        return view('questionForm', ['question' => $question,'edit' => $edit  ]);
+        return view('questionForm', ['question' => $question, 'edit' => $edit]);
     }
+
     public function store(Request $request)
     {
         $input = $request->validate([
@@ -62,7 +62,6 @@ class QuestionController extends Controller
         return redirect()->route('home')->with('message', 'IT WORKS!');
 
 
-
         // return redirect()->route('questions.show', ['id' => $question->id]);
 
     }
@@ -71,7 +70,7 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question)
@@ -82,20 +81,20 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
     {
         $edit = TRUE;
-        return view('questionForm', ['question' => $question, 'edit' => $edit ]);
+        return view('questionForm', ['question' => $question, 'edit' => $edit]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Question $question)
@@ -113,60 +112,8 @@ class QuestionController extends Controller
         $question->body = $request->body;
         $question->save();
 
-        return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Saved');
-    }
+        return redirect()->route('questions.show', ['question_id' => $question->id])->with('message', 'Saved');
+    }}
 
 
 
-
-
-    public function like(Question $question)
-    {
-        $like = TRUE;
-        return view('questionForm', ['question' => $question, 'like' => $like ]);
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
-    {
-        $question->delete();
-        return redirect()->route('home')->with('message', 'Deleted');
-
-    }
-public function questionLikeQuestion(Request $request)
-{
-   $question_id = $request [question_id];
-   $is_like = $request['islike']=== 'true';
-   $update = false;
-   $question = Post::find($question_id);
-   if (!$question) {
-       return null;
-   }
-   $user = Auth::user();
-   $like = $user->likes()->where('question_id', $question_id)->first();
-   if ($like){
-       $like_inuse = $like->like;
-       $update = true;
-       if ($like_inuse == $is_like){
-           $like->delete();
-           return null;
-       }
-   }else {
-       $like= new Like();
-   }
-   $like->like = $is_like;
-   $like->uer_id = $user->id;
-   $like->question_id = $question->id;
-   if ($update) {
-       $like->update();
-   }else{
-       $like->save();
-   }
-
-}
-
-}
