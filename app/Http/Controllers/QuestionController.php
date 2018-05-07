@@ -35,7 +35,14 @@ class QuestionController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
      */
+    public function create()
+    {
+        $question = new Question;
+        $edit = FALSE;
+        return view('questionForm', ['question' => $question,'edit' => $edit  ]);
+    }
     public function store(Request $request)
     {
         $input = $request->validate([
@@ -109,6 +116,15 @@ class QuestionController extends Controller
         return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Saved');
     }
 
+
+
+
+
+    public function like(Question $question)
+    {
+        $like = TRUE;
+        return view('questionForm', ['question' => $question, 'like' => $like ]);
+    }
     /**
      * Remove the specified resource from storage.
      *

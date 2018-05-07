@@ -18,6 +18,7 @@
                         </div>
                         <button class="btn btn-success float-right" value="submit" type="submit" id="submit">Save
                         </button>
+
                         {!! Form::close() !!}
                     </div>
 

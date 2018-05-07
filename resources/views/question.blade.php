@@ -22,24 +22,28 @@
                         </button>
                         {!! Form::close() !!}
 
+
+
                         <div class="interaction">
-                            <a href="#" class="like">{{Auth::user()->likes()->where('question_id', $question->id)->first()? Auth::user()->likes()->where('question_id', $question->id)->first()->like ==1 ? 'You liked this Post! :'Like':'Like'}}</a>
-                            <a href="#" class="like">{{Auth::user()->likes()->where('question_id', $question->id)->first()? Auth::user()->likes()->where('question_id', $question->id)->first()->like ==0 ? 'You did not like this post : 'Dislike':'Dislike' }}</a>
-                            href="{{ route('questions.show', ['id' => $question->id]) }}
+                            <a href="#">Like</a>
+                            <a href="#">Dislike</a>
+                            <a href="{{ route('questions.show', ['id' => $question->id]) }}</a>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 
-                        <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"><a class="btn btn-primary float-left"
-                                                href="{{ route('answers.create', ['question_id'=> $question->id])}}">
+                   </div>
+
+               </div>
+           </div>
+
+       </div>
+   </div>
+
+
+                       <div class="col-md-12">
+               <div class="card">
+                   <div class="card-header"><a class="btn btn-primary float-left"
+                                               href="{{ route('answers.create', ['question_id'=> $question->id])}}">
                             Answer Question
                         </a></div>
 
