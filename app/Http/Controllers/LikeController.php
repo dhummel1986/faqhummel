@@ -37,7 +37,7 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+        }
     public function questionLikeQuestion(Request $request)
     {
         $question_id = $request [question_id];

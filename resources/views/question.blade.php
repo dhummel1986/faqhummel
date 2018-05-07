@@ -25,51 +25,46 @@
 
 
                         <div class="interaction">
-                            <a href="#" class="like">Like</a>
-                            <a href="#" class="like ">Dislike</a>
-                            <a href="{{ route('questions.show', ['id' => $question->id]) }}</a>
+                            <a href="#" class="like">{{Auth::user()->likes()->where('question_id',$question->id)->first() ? Auth::user()->likes()->where('question_id',$question->id)->first()->like == 1 ? 'You Liked this Post!' : 'Like' : 'Like'}}></a>
+                            <a href="#" class="like ">{{Auth::user()->likes()->where('question_id',$question->id)->first() ? Auth::user()->likes()->where('question_id',$question->id)->first()->like == 0 ? 'You do not like this Post!' : 'Dislike' : 'Dislike'}}></a>
+
+
                         </div>
 
 
-                   </div>
 
-               </div>
-           </div>
-
-       </div>
-   </div>
-
-
-                       <div class="col-md-12">
-               <div class="card">
-                   <div class="card-header"><a class="btn btn-primary float-left"
-                                               href="{{ route('answers.create', ['question_id'=> $question->id])}}">
-                            Answer Question
-                        </a></div>
-
-                    <div class="card-body">
-                        @forelse($question->answers as $answer)
                             <div class="card">
-                                <div class="card-body">{{$answer->body}}</div>
-                                <div class="card-footer">
+                                <div class="card-header">
+                                    <a class="btn btn-primary float-left"
+                                   href="{{ route('answers.create', ['question_id'=> $question->id])}}">
+                                        Answer Question
+                                    </a></div>
 
-                                    <a class="btn btn-primary float-right"
-                                       href="{{ route('answers.show', ['question_id'=> $question->id,'answer_id' => $answer->id]) }}">
-                                        View
-                                    </a>
+                                <div class="card-body">
+                                    @forelse($question->answers as $answer)
+                                        <div class="card">
+                                            <div class="card-body">{{$answer->body}}</div>
+                                            <div class="card-footer">
+
+                                                <a class="btn btn-primary float-right"
+                                                   href="{{ route('answers.show', ['question_id'=> $question->id,'answer_id' => $answer->id]) }}">
+                                                    View
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <div class="card">
+
+                                            <div class="card-body"> No Answers</div>
+                                        </div>
+                                    @endforelse
+                                </div>
+
 
                                 </div>
                             </div>
-                        @empty
-                            <div class="card">
-
-                                <div class="card-body"> No Answers</div>
-                            </div>
-                        @endforelse
-
-
-
-                </div>
-            </div>
                         </div>
+                </div>
+</div>
 @endsection
